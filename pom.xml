@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+	<!--
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
 		<version>9</version>
 	</parent>
+	-->
 
 	<groupId>com.crawljax</groupId>
 	<artifactId>crawljax-parent-pom</artifactId>
@@ -40,6 +43,22 @@
 		<jetty.version>9.3.0.M1</jetty.version>
 		<metrics.version>3.0.2</metrics.version>
 	</properties>
+
+	<!--
+    	Added for ActiveStandards/CrownPeak nexus repo hosting
+	-->
+
+	<distributionManagement>
+		<repository>
+			<id>crawljax-release</id>
+			<url>http://nexus.activestandards.com/nexus/content/repositories/crawljax/</url>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>crawljax-snapshots</id>
+			<url>http://nexus.activestandards.com/nexus/content/repositories/crawljax-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<scm>
 		<connection>scm:git:git@github.com:crawljax/crawljax.git</connection>
