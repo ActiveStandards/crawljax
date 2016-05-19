@@ -142,7 +142,12 @@ public class WebDriverBrowserBuilder implements Provider<EmbeddedBrowser> {
 
 		DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setCapability("takesScreenshot", true);
+
 		caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[]{"--webdriver-loglevel=WARN"});
+
+		caps.setCapability(getPageSettingKeyFor("userAgent"), "Mozilla/5.0 WebKit CrownPeakJSBot/0.1");
+		caps.setCapability(PhantomJSDriverService.PHANTOMJS_PAGE_SETTINGS_PREFIX, "Y");
+
 		final ProxyConfiguration proxyConf = configuration
 				.getProxyConfiguration();
 		if (proxyConf != null && proxyConf.getType() != ProxyType.NOTHING) {
@@ -157,6 +162,10 @@ public class WebDriverBrowserBuilder implements Provider<EmbeddedBrowser> {
 
 		return WebDriverBackedEmbeddedBrowser.withDriver(phantomJsDriver, filterAttributes,
 		        crawlWaitEvent, crawlWaitReload);
+	}
+
+	private String getPageSettingKeyFor(String setting) {
+		return PhantomJSDriverService.PHANTOMJS_PAGE_SETTINGS_PREFIX + setting;
 	}
 
 }
