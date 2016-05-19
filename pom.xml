@@ -9,7 +9,7 @@
 
 	<groupId>com.crawljax</groupId>
 	<artifactId>crawljax-parent-pom</artifactId>
-	<version>3.6</version>
+	<version>3.6.1cp</version>
 	<packaging>pom</packaging>
 
 	<name>Crawljax parent POM</name>
@@ -35,7 +35,8 @@
 
 		<slf4j.version>1.7.7</slf4j.version>
 		<logback.version>1.1.2</logback.version>
-		<selenium.version>[2.44.0,)</selenium.version>
+		<selenium.version1>[2.44.0,)</selenium.version1>
+		<selenium.version>2.48.1</selenium.version>
 		<jetty.version>9.3.0.M1</jetty.version>
 		<metrics.version>3.0.2</metrics.version>
 	</properties>
