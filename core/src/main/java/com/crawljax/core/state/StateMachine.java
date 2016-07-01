@@ -100,7 +100,7 @@ public class StateMachine {
 
 		// Is there a clone detected?
 		if (cloneState != null) {
-			LOGGER.info(":-D CLONE State detected: {} and {} are the same.", newState.getName(),
+			LOGGER.info("CLONE State detected: {} and {} are the same.", newState.getName(),
 			        cloneState.getName());
 			LOGGER.debug("CLONE CURRENTSTATE: {}", currentState.getName());
 			LOGGER.debug("CLONE STATE: {}", cloneState.getName());
@@ -108,7 +108,7 @@ public class StateMachine {
 			addEdgeAndNotifyPlugins(currentState, cloneState, eventable, false);
 		} else {
 			addEdgeAndNotifyPlugins(currentState, newState, eventable, true);
-			LOGGER.info(":-) State {} added to the StateMachine.", newState.getName());
+			LOGGER.info("State {} added to the StateMachine.", newState.getName());
 		}
 
 		// Add the Edge
