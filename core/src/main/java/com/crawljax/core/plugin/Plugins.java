@@ -48,7 +48,8 @@ public class Plugins {
 	                OnInvariantViolationPlugin.class, OnNewStatePlugin.class,
 	                OnRevisitStatePlugin.class, OnUrlLoadPlugin.class,
 	                PostCrawlingPlugin.class, PreStateCrawlingPlugin.class,
-	                PreCrawlingPlugin.class);
+	                PreCrawlingPlugin.class, OnNewStatePathPlugin.class
+			);
 
 	private final ImmutableListMultimap<Class<? extends Plugin>, Plugin> plugins;
 
@@ -127,8 +128,8 @@ public class Plugins {
 
 
 	public void runOnNewStatePathPlugins(StateVertex currentState, StateVertex newState, Eventable eventable, boolean targetIsNewState) {
-		LOGGER.debug("Running OnBrowserCreatedPlugins...");
-		counters.get(OnBrowserCreatedPlugin.class).inc();
+		LOGGER.debug("Running OnNewStatePathPlugin...");
+		counters.get(OnNewStatePathPlugin.class).inc();
 		for (Plugin plugin : plugins.get(OnNewStatePathPlugin.class)) {
 			if (plugin instanceof OnNewStatePathPlugin) {
 				LOGGER.debug("Calling plugin {}", plugin);
