@@ -14,7 +14,7 @@ public interface PostCrawlingPlugin extends Plugin {
 	 * change the behavior of other post crawl plugins. It is not a copy!
 	 * 
 	 * @param session
-	 *            the crawl session.
+	 *            the crawl session.we
 	 * @param exitReason
 	 *            The {@link ExitStatus} Crawljax stopped.
 	 */

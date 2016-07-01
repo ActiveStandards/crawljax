@@ -125,6 +125,22 @@ public class Plugins {
 		        + ".fail_count").inc();
 	}
 
+
+	public void runOnNewStatePathPlugins(StateVertex currentState, StateVertex newState, Eventable eventable, boolean targetIsNewState) {
+		LOGGER.debug("Running OnBrowserCreatedPlugins...");
+		counters.get(OnBrowserCreatedPlugin.class).inc();
+		for (Plugin plugin : plugins.get(OnNewStatePathPlugin.class)) {
+			if (plugin instanceof OnNewStatePathPlugin) {
+				LOGGER.debug("Calling plugin {}", plugin);
+				try {
+					((OnNewStatePathPlugin) plugin) .onNewStatePath(currentState, newState, eventable, targetIsNewState);
+				} catch (RuntimeException e) {
+					reportFailingPlugin(plugin, e);
+				}
+			}
+		}
+	}
+
 	/**
 	 * load and run the OnUrlLoadPlugins. The OnURLloadPlugins are run just after the Browser has
 	 * gone to the initial url. Not only the first time but also every time the Core navigates back.

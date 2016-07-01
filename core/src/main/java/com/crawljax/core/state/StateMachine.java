@@ -105,15 +105,20 @@ public class StateMachine {
 			LOGGER.debug("CLONE CURRENTSTATE: {}", currentState.getName());
 			LOGGER.debug("CLONE STATE: {}", cloneState.getName());
 			LOGGER.debug("CLONE CLICKABLE: {}", eventable);
-			stateFlowGraph.addEdge(currentState, cloneState, eventable);
+			addEdgeAndNotifyPlugins(currentState, cloneState, eventable, false);
 		} else {
-			stateFlowGraph.addEdge(currentState, newState, eventable);
+			addEdgeAndNotifyPlugins(currentState, newState, eventable, true);
 			LOGGER.info("State {} added to the StateMachine.", newState.getName());
 		}
 
 		// Add the Edge
 
 		return cloneState;
+	}
+
+	private void addEdgeAndNotifyPlugins(StateVertex currentState, StateVertex newState, Eventable eventable, boolean targetIsNewState) {
+		stateFlowGraph.addEdge(currentState, newState, eventable);
+		plugins.runOnNewStatePathPlugins(currentState, newState, eventable, targetIsNewState);
 	}
 
 	/**
